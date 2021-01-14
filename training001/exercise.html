@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div id="app">
+		<p>message: <span>{{message}}</span></p>
+		<p><a v-if="toggle" v-bind:href="url" target="_blank">vuejs.org</a></p>
+		<ul>
+			<li v-for="(v, k) in languages">[{{k}}] {{v}}</li>
+		</ul>
+		<button v-on:click="button_click" id="massage_change_button">click to change massage</button>
+		<p>
+			<input type="text" v-model="message" value="">
+		</p>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+	<script type="text/javascript">
+		let app = new Vue({
+			el: "#app",
+			data: {
+				message: "Hello World!",
+				url: "https://jp.vuejs.org/",
+				toggle: false,
+				languages: ["JavaScript", "Ruby", "Python"]
+			},
+			methods: {
+				button_click: function(){
+					this.message = "Clicked!";
+				}
+			}
+		});
+	</script>
+</body>
+</html>

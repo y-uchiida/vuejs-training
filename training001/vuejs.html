@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+	</head>
+	<body>
+		<div id="app">
+			<h1>vue.js training 001</h1>
+			<h2>data-binding</h2>
+			<p>message data: {{ message }}</p>
+
+			<h3>bind object data</h3>
+			<ul>
+				<li>user name: {{user.name}}</li>
+				<li>mail address: {{user.mail}}</li>
+			</ul>
+
+			<h3>bind array</h3>
+			<ul>
+				<li>0: {{fruits[0]}}</li>
+				<li>1: {{fruits[1]}}</li>
+			</ul>
+
+			<h2>vue directives</h2>
+			<h3>v-bind</h3>
+			<input v-bind:value="input_text" />
+
+			<h3>v-if & v-show</h3>
+			<section>
+				depends on property "toggle":
+				<p v-if="toggle">"toggle" is true.</p>
+			</section>
+			<section>
+				depends on property "display":
+				<p v-if="display">"display" is true.</p>
+			</section>
+
+			<h3>v-for loop</h3>
+			<ol>
+				<li v-for="(item, index) in fruits">index: {{index}},  value: {{item}}</li>
+			</ol>
+			<ul>
+				<li v-for="(value, key) in user">{{key}}: {{value}}</li>
+			</ul>
+
+			<h3>event handring with v-on</h3>
+			<button v-on:click="button_click">show current date time</button> <span id="now_date">{{now_date}}</span>
+
+			<h3>v-model</h3>
+			<p>
+				<input v-model="input_text2" />
+			</p>
+			<p>
+				<textarea v-model="input_text2"></textarea>
+			</p>
+			input_text2: <span>{{input_text2}}</span>
+
+			<h2>vue component</h2>
+			<say_hello></say_hello>
+
+			<h2>show data propaties</h2>
+			<pre>{{$data}}</pre>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+		<script type="text/javascript">
+			Vue.component("say_hello", {
+				template: "<p>Hello World, from Vue conponent.</p>"
+			});
+			let app = new Vue({
+				el: "#app",
+				data: {
+					message: "Hello vue js",
+					int: 0,
+					user: {
+						name: "uchiida",
+						mail: "uchiida@example.com"
+					},
+					fruits: [
+						"apple", "orange", "banana"
+					],
+					input_text: "binding input value.",
+					toggle: true,
+					display: false,
+					now_date: "",
+					input_text2: "two-way data-binding"
+				},
+				methods: {
+					button_click: function(e){
+						this.now_date = new Date().toLocaleDateString();
+					}
+					/*
+					** this will not work: arrow function bind "this" without interpretation of context.
+					** button_click: function(e){
+					**	this.now_date = new Date().toLocaleDateString();
+					** }
+					*/
+				}
+			});
+		</script>
+	</body>
+</html>
