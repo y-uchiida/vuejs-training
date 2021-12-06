@@ -37,10 +37,25 @@
 
 			<h3>v-for loop</h3>
 			<ol>
-				<li v-for="(item, index) in fruits">index: {{index}},  value: {{item}}</li>
+				<li v-for="(item, index) in fruits">
+					index: {{index}},  value: {{item}}
+					<input type="text">
+				</li>
 			</ol>
+			<button v-on:click="remove_fruits">remove first item of fruits</button>
+			<h3>v-for loop with key element</h3>
+			<ol>
+				<li v-for="(item, index) in vegetables" v-bind:key="item">
+					index: {{index}},  value: {{item}}
+					<input type="text">
+				</li>
+			</ol>
+			<button v-on:click="remove_vegetables">remove first item of vegetables</button>
+
+			
+			<h3>v-for loop of objects</h3>
 			<ul>
-				<li v-for="(value, key) in user">{{key}}: {{value}}</li>
+				<li v-for="(value, key) of user">{{key}}: {{value}}</li>
 			</ul>
 
 			<h3>event handring with v-on</h3>
@@ -78,6 +93,9 @@
 					fruits: [
 						"apple", "orange", "banana"
 					],
+					vegetables: [
+						"carrot", "onion", "potato"
+					],
 					input_text: "binding input value.",
 					toggle: true,
 					display: false,
@@ -87,6 +105,12 @@
 				methods: {
 					button_click: function(e){
 						this.now_date = new Date().toLocaleDateString();
+					},
+					remove_fruits: function(){
+						this.fruits.shift();
+					},
+					remove_vegetables: function(){
+						this.vegetables.shift();
 					}
 					/*
 					** this will not work: arrow function bind "this" without interpretation of context.
