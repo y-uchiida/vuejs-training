@@ -8,6 +8,9 @@ import * as getters from './getters'
 import * as actions from './actions'
 import * as mutations from './mutations'
 
+/*
+ * history に実行したvuex の処理(mutations)の値を保存しておく
+ */
 const state = {
   test: 0,
   count: 0,

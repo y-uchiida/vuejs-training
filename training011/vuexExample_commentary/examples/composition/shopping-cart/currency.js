@@ -1,5 +1,6 @@
 const digitsRE = /(\d{3})(?=\d)/g
 
+/* 数値を通貨表記に変換するための関数 */
 export function currency (value, currency, decimals) {
   value = parseFloat(value)
   if (!isFinite(value) || (!value && value !== 0)) return ''

@@ -1,6 +1,10 @@
 /**
  * Mocking client-server processing
  */
+
+/*
+ * 商品データの配列を、サーバAPIからの応答の代わりに配置
+ */
 const _products = [
   { 'id': 1, 'title': 'iPad 4 Mini', 'price': 500.01, 'inventory': 2 },
   { 'id': 2, 'title': 'H&M T-Shirt White', 'price': 10.99, 'inventory': 10 },
@@ -8,10 +12,20 @@ const _products = [
 ]
 
 export default {
+  /*
+   * getProducts()
+   * 商品在庫のデータオブジェクトを返すapiを呼び出す
+   * 仮のapi 処理結果として、100ms 後にオブジェクトを引数にしたコールバック関数を実行する
+   */
   getProducts (cb) {
     setTimeout(() => cb(_products), 100)
   },
 
+  /* buyProducts()
+   * 購入処理を実行するapiを呼び出す
+   * 仮のapi処理結果として、乱数値が0.5より大きいかどうかで成功・失敗を分岐している
+   * 成功の場合はcb (成功時のコールバック関数)、失敗の場合はerrorCb (失敗時のコールバック関数)を実行する
+   */
   buyProducts (products, cb, errorCb) {
     setTimeout(() => {
       // simulate random checkout failure.
